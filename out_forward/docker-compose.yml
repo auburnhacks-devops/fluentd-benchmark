@@ -3,13 +3,13 @@ services:
   receiver:
     image: docker.tsys.aws/ruby:latest
     command: >
-      bash -c "[ -d fluentd-benchmark ] || git clone https://github.com/fluent/fluentd-benchmark &&
+      bash -c "[ -d fluentd-benchmark ] || git clone https://github.com/auburnhacks-devops/fluentd-benchmark &&
       cd fluentd-benchmark/out_forward && bundle &&
       bundle exec fluentd -c receiver.conf"
   agent:
     image: docker.tsys.aws/ruby:latest
     command: >
-      bash -c "[ -d fluentd-benchmark ] || git clone https://github.com/fluent/fluentd-benchmark &&
+      bash -c "[ -d fluentd-benchmark ] || git clone https://github.com/auburnhacks-devops/fluentd-benchmark &&
       cd fluentd-benchmark/out_forward && bundle &&
       sed -e 's/host 127.0.0.1/host receiver/' -i agent.conf &&
       apt-get update && apt-get install -y netcat &&
